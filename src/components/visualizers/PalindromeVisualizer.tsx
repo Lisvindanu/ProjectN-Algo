@@ -20,10 +20,15 @@ export function PalindromeVisualizer() {
   const chars = cleaned.split('');
   const { left, right, comparing, result } = stepData;
 
+  // Calculate box size and gap dynamically
+  const boxSize = 56; // 14 * 4 = 56px (w-14 h-14)
+  const gap = 8; // gap-2 = 8px
+  const totalWidth = chars.length * boxSize + (chars.length - 1) * gap;
+
   return (
     <div className="flex flex-col items-center justify-center p-8 min-h-[400px]">
       {/* Character boxes */}
-      <div className="flex gap-2 justify-center mb-12 flex-wrap">
+      <div className="flex gap-2 justify-center mb-16 flex-wrap">
         {chars.map((char, index) => {
           const isLeft = index === left;
           const isRight = index === right;
@@ -47,9 +52,9 @@ export function PalindromeVisualizer() {
             <motion.div
               key={`${index}-${char}`}
               className={`
-                w-12 h-12 sm:w-16 sm:h-16
+                w-14 h-14
                 flex items-center justify-center
-                text-xl sm:text-2xl font-mono font-bold rounded-lg
+                text-2xl font-mono font-bold rounded-lg
                 ${bgColor}
                 ${comparing && isHighlighted ? 'ring-4 ring-yellow-400' : ''}
               `}
@@ -76,13 +81,17 @@ export function PalindromeVisualizer() {
       </div>
 
       {/* Pointer indicators */}
-      <div className="relative w-full max-w-2xl h-12">
+      <div
+        className="relative h-12 flex justify-center"
+        style={{ width: `${totalWidth}px` }}
+      >
         {left <= right && (
           <>
             <motion.div
               className="absolute flex flex-col items-center"
+              style={{ width: `${boxSize}px` }}
               animate={{
-                x: left * 56 + (chars.length < 10 ? (10 - chars.length) * 28 : 0),
+                left: `${left * (boxSize + gap)}px`,
               }}
               transition={{ type: 'spring', stiffness: 200, damping: 25 }}
             >
@@ -96,8 +105,9 @@ export function PalindromeVisualizer() {
 
             <motion.div
               className="absolute flex flex-col items-center"
+              style={{ width: `${boxSize}px` }}
               animate={{
-                x: right * 56 + (chars.length < 10 ? (10 - chars.length) * 28 : 0),
+                left: `${right * (boxSize + gap)}px`,
               }}
               transition={{ type: 'spring', stiffness: 200, damping: 25 }}
             >

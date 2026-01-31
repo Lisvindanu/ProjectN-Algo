@@ -1,11 +1,7 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import * as Tabs from '@radix-ui/react-tabs';
-import Prism from 'prismjs';
-import 'prismjs/themes/prism-tomorrow.css';
-import 'prismjs/components/prism-python';
-import 'prismjs/components/prism-javascript';
-import 'prismjs/components/prism-java';
-import 'prismjs/components/prism-cpp';
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import { AlgorithmImplementation } from '@/lib/types';
 
 interface CodeDisplayProps {
@@ -24,15 +20,11 @@ export function CodeDisplay({ implementations }: CodeDisplayProps) {
     implementations[0]?.language || 'Python'
   );
 
-  useEffect(() => {
-    Prism.highlightAll();
-  }, [selectedLanguage]);
-
   const currentImplementation = implementations.find(
     (impl) => impl.language === selectedLanguage
   );
 
-  const prismLanguage = languageMap[selectedLanguage] || 'javascript';
+  const syntaxLanguage = languageMap[selectedLanguage] || 'javascript';
 
   return (
     <div className="w-full bg-card border border-border rounded-lg overflow-hidden">
@@ -55,14 +47,23 @@ export function CodeDisplay({ implementations }: CodeDisplayProps) {
           <Tabs.Content
             key={impl.language}
             value={impl.language}
-            className="p-4 focus:outline-none"
+            className="p-0 focus:outline-none"
           >
             {currentImplementation && (
-              <pre className="!bg-transparent !p-0 !m-0 overflow-x-auto">
-                <code className={`language-${prismLanguage} !text-sm`}>
-                  {currentImplementation.code}
-                </code>
-              </pre>
+              <SyntaxHighlighter
+                language={syntaxLanguage}
+                style={vscDarkPlus}
+                customStyle={{
+                  margin: 0,
+                  borderRadius: 0,
+                  fontSize: '0.875rem',
+                  background: 'transparent',
+                }}
+                showLineNumbers
+                wrapLines
+              >
+                {currentImplementation.code}
+              </SyntaxHighlighter>
             )}
           </Tabs.Content>
         ))}
