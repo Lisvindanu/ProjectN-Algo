@@ -1,0 +1,47 @@
+{
+  "id": "palindrome",
+  "name": "Palindrome Checker",
+  "category": "String Algorithms",
+  "difficulty": "Easy",
+  "description": "Determines if a string reads the same forwards and backwards using the two-pointer technique. This algorithm ignores spaces, punctuation, and case.",
+  "keyIdeas": [
+    "Two-pointer approach - start from both ends",
+    "String normalization - remove non-alphanumeric characters",
+    "Early termination - stop as soon as mismatch found",
+    "Linear time complexity - single pass through half the string"
+  ],
+  "complexity": {
+    "time": "O(n)",
+    "space": "O(1)",
+    "timeExplanation": "We traverse through at most n/2 characters, where n is the length of the cleaned string. Each comparison is O(1), resulting in O(n) total time.",
+    "spaceExplanation": "Only two pointer variables are needed regardless of input size. The cleaned string is created once and not modified during comparison."
+  },
+  "realWorldUses": [
+    "DNA sequence analysis - identifying palindromic sequences in genetics",
+    "Text validation - checking usernames or identifiers for palindrome properties",
+    "Data integrity checks - palindrome-based checksums in some systems",
+    "Pattern recognition - finding symmetric patterns in data streams"
+  ],
+  "relatedAlgorithms": [
+    "two-sum",
+    "reverse-string",
+    "valid-parentheses"
+  ],
+  "examples": [
+    {
+      "input": "A man, a plan, a canal: Panama",
+      "output": true,
+      "explanation": "After removing non-alphanumeric characters and converting to lowercase, it reads 'amanaplanacanalpanama' which is a palindrome."
+    },
+    {
+      "input": "race a car",
+      "output": false,
+      "explanation": "After cleaning: 'raceacar' which is not a palindrome."
+    },
+    {
+      "input": "Was it a car or a cat I saw?",
+      "output": true,
+      "explanation": "Cleaned version: 'wasitacaroracatisaw' is a palindrome."
+    }
+  ]
+}

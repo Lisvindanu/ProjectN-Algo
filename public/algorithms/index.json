@@ -1,0 +1,50 @@
+{
+  "algorithms": [
+    {
+      "id": "palindrome",
+      "name": "Palindrome Checker",
+      "category": "String Algorithms",
+      "difficulty": "Easy",
+      "available": true,
+      "order": 1
+    },
+    {
+      "id": "reverse-string",
+      "name": "Reverse String",
+      "category": "String Algorithms",
+      "difficulty": "Easy",
+      "available": false,
+      "order": 2
+    },
+    {
+      "id": "two-sum",
+      "name": "Two Sum",
+      "category": "Array Algorithms",
+      "difficulty": "Easy",
+      "available": false,
+      "order": 3
+    }
+  ],
+  "categories": [
+    {
+      "id": "string",
+      "name": "String Algorithms",
+      "description": "Algorithms for string manipulation and analysis"
+    },
+    {
+      "id": "array",
+      "name": "Array Algorithms",
+      "description": "Algorithms for array operations and searching"
+    },
+    {
+      "id": "sorting",
+      "name": "Sorting Algorithms",
+      "description": "Various sorting techniques and implementations"
+    },
+    {
+      "id": "searching",
+      "name": "Searching Algorithms",
+      "description": "Efficient search algorithms for different data structures"
+    }
+  ]
+}
